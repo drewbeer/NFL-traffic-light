@@ -1,4 +1,5 @@
 #!/usr/bin/perl
+# parsing the nfl feed for score changes and hits and api to blink the links
 use strict;
 use warnings;
 use Data::Dumper;
@@ -7,6 +8,7 @@ use JSON;
 use Storable qw(nstore retrieve);
 use Time::HiRes qw(usleep nanosleep);
 
+my $favTeam = 'NE';
 my $webHost = 'localhost';
 my $debug = 1;
 my $nflScoreFeed = 'http://www.nfl.com/liveupdate/scores/scores.json';
@@ -120,7 +122,7 @@ sub checkScore {
   print "checkScore: $score\n";
 
   # its pats turn on green
-  if ($name eq "NE") {
+  if ($name eq $favTeam) {
     tfOn('green');
   }
 
@@ -164,7 +166,7 @@ sub checkScore {
     pulse2('yellow', 'red');
   }
 
-  if ($name eq "NE") {
+  if ($name eq $favTeam) {
     tfOff('green');
   }
 
