@@ -3,7 +3,7 @@ A old traffic light to blink based on whats happening during NFL games.
 
 the reason its split is because i use the light for other home automation tasks, all documented here...
 
-https://drew.beer/blog/
+[Traffic light NFL project](https://drew.beer/blog/blog/nfl-traffic-light)
 
 #### web server
 
