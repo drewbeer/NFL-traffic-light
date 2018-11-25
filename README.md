@@ -5,6 +5,12 @@ the reason its split is because i use the light for other home automation tasks,
 
 [Traffic light NFL project](https://drew.beer/blog/blog/nfl-traffic-light)
 
+
+#### perl modules
+```
+cpanm Test::JSON JSON Time::HiRes HTTP::Tiny Storable Mojolicious::Lite Mojo::JSON
+```
+
 #### web server
 
 ```
@@ -12,7 +18,7 @@ the reason its split is because i use the light for other home automation tasks,
 ```
 
 ### nfl.pl
-the top of this script contains the favorite team variable, said your abbreviated team at the top. 
+the top of this script contains the favorite team variable, said your abbreviated team at the top.
 
 ```
 ./nfl.pl

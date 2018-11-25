@@ -5,6 +5,7 @@ use warnings;
 use Data::Dumper;
 use HTTP::Tiny;
 use JSON;
+use Test::JSON;
 use Storable qw(nstore retrieve);
 use Time::HiRes qw(usleep nanosleep);
 
@@ -197,8 +198,12 @@ sub fetchGames {
   my $response = $http->get($nflScoreFeed);
 
   if ( $response->{'success'} ) {
-    my $decodedResponse  = decode_json $response->{'content'};
-    return $decodedResponse;
+    # we need to validate the json because sometimes it craps out
+    if (is_valid_json($response->{'content'})) {
+      my $decodedResponse  = decode_json $response->{'content'};
+      return $decodedResponse;
+    }
+    return 0;
   } else {
     print "$response->{'status'} $response->{'reason'}\n";
     return 0;

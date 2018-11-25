@@ -39,13 +39,6 @@ app->log->info("Raspberry Pi Version $rpiVer");
 sub startup {
   my $self = shift;
   app->log->info('gpio-web starting');
-
-  # # GPIO setup
-  # # make sure all pins are set to low
-  # app->log->info('setting all relays to off');
-  # foreach my $pin (keys %{ $relays }) {
-  #   `$gpioCMD export $relays->{$pin} low`;
-  # }
 }
 
 ## relay control ##
@@ -156,4 +149,3 @@ get '/quit' => sub {
 app->log->info('Starting Web Server');
 app->config(gpioweb => {listen => [$listenWebPort]});
 app->start;
-
