@@ -8,7 +8,7 @@ the reason its split is because i use the light for other home automation tasks,
 
 #### perl modules
 ```
-cpanm Test::JSON JSON Time::HiRes HTTP::Tiny Storable Mojolicious::Lite Mojo::JSON
+cpanm JSON Time::HiRes HTTP::Tiny Storable Mojolicious::Lite Mojo::JSON
 ```
 
 #### web server

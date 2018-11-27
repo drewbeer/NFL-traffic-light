@@ -2,10 +2,8 @@
 # parsing the nfl feed for score changes and hits and api to blink the links
 use strict;
 use warnings;
-use Data::Dumper;
 use HTTP::Tiny;
 use JSON;
-use Test::JSON;
 use Storable qw(nstore retrieve);
 use Time::HiRes qw(usleep nanosleep);
 
@@ -47,7 +45,6 @@ while (1) {
   my $liveCount = 0;
   my $finishedCount = 0;
   my $notStartedCount = 0;
-  # print Dumper($nflGames);
 
   foreach my $games (keys %{ $nflGames } ) {
     if ((!$nflGames->{$games}->{'qtr'}) || ($nflGames->{$games}->{'qtr'} =~ /Pregame/)) {
@@ -199,13 +196,13 @@ sub fetchGames {
 
   if ( $response->{'success'} ) {
     # we need to validate the json because sometimes it craps out
-    if (is_valid_json($response->{'content'})) {
+    if ($response->{'content'} =~ /\{.*\:\{.*\:.*\}\}/) {
       my $decodedResponse  = decode_json $response->{'content'};
       return $decodedResponse;
     }
     return 0;
   } else {
-    print "$response->{'status'} $response->{'reason'}\n";
+    print "error: $response->{'status'} $response->{'reason'}\n";
     return 0;
   }
 }
