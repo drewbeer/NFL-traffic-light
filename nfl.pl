@@ -217,7 +217,7 @@ sub tfOff {
 
 sub tfOn {
   my $color = shift;
-  my $url = "http://webHost:3000/api/relay/set/$color/on";
+  my $url = "http://$webHost:3000/api/relay/set/$color/on";
   my $http = HTTP::Tiny->new();
   my $response = $http->get($url);
   return;
